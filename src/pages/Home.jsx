@@ -1,175 +1,228 @@
-import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { BookOpen, Users, CreditCard, HandHelping } from "lucide-react";
-import Edu from "../assets/Edu.png";
-import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-
-const LandingPage = () => {
-  const [activeTab, setActiveTab] = useState("donors");
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0.1, 1.8], [1, 2]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const featuresData = {
-    donors: {
-      title: "Empower Students, Transform Lives",
-      description:
-        "Make a direct impact by supporting promising students in their educational journey.",
-      icon: <HandHelping className="w-12 h-12 text-blue-600" />,
-      benefits: [
-        "Transparent donation tracking",
-        "Direct support to students",
-        "Blockchain-verified contributions",
-      ],
+const Home = () => {
+  // Sample featured students data
+  const featuredStudents = [
+    {
+      id: 1,
+      name: 'Priya Sharma',
+      image: '/api/placeholder/300/300',
+      school: 'Delhi Public School',
+      goal: 75000,
+      raised: 45000,
+      story: 'Aspiring computer scientist from a rural village seeking support for her education.',
     },
-    students: {
-      title: "Your Education, Your Opportunity",
-      description:
-        "Access financial support and unlock your academic potential.",
-      icon: <BookOpen className="w-12 h-12 text-green-600" />,
-      benefits: [
-        "Personalized scholarship matching",
-        "Secure fund management",
-        "Community support network",
-      ],
+    {
+      id: 2,
+      name: 'Arjun Patel',
+      image: '/api/placeholder/300/300',
+      school: 'St. Xavier\'s College',
+      goal: 90000,
+      raised: 60000,
+      story: 'First-generation college student pursuing engineering to help his community.',
     },
-  };
-
-  const HowItWorksStep = ({ number, title, description }) => (
-    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-      <div className="text-5xl font-bold text-blue-500 mb-4">{number}</div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-  );
-
-  if (!isClient) return null;
+    {
+      id: 3,
+      name: 'Zara Ahmed',
+      image: '/api/placeholder/300/300',
+      school: 'Bangalore University',
+      goal: 120000,
+      raised: 70000,
+      story: 'Passionate about sustainable agriculture and rural development.',
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div>
       {/* Hero Section */}
-      <motion.div
-        className="relative min-h-screen bg-gradient-to-br from-blue-600 to-purple-700 text-white"
-        style={{ scale, opacity }}
-      >
-        <div className="h-130 w-full  flex items-center justify-center rounded-lg">
-          <img
-            src={Edu}
-            alt="Example Image"
-            className="w-auto h-full  object-cover rounded-lg"
-          />
-        </div>
-
-        <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-5xl font-serif  font-bold mb-6 animate-fade-in">
-            EduFund: Bridging Dreams and Opportunities
-          </h1>
-          <p className="text-xl font-serif max-w-2xl mx-auto mb-8">
-            A blockchain-powered platform connecting passionate donors with
-            ambitious students
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Empower Dreams Through Education</h1>
+          <p className="text-xl max-w-3xl mb-8">
+            Connect with talented students from underprivileged backgrounds and fund their education.
+            Your contribution today can change someone's tomorrow.
           </p>
-          <div className="flex justify-center space-x-4">
-            <button className="border border-white font-mono px-6 py-3 rounded-full hover:bg-white hover:text-blue-600 cursor-pointer transition">
-              Learn More
-            </button>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link to="/students" className="bg-white text-blue-600 font-medium px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+              Support a Student
+            </Link>
+            <Link to="/student-register" className="bg-blue-800 text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+              Apply for Scholarship
+            </Link>
           </div>
         </div>
-      </motion.div>
-      <br />
-      <br />
-      <br />
-      <br />
+      </section>
 
-      {/* Rest of the component remains the same as the original */}
-      {/* Interactive Tabs Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-5xl font-serif font-bold text-gray-800 mb-4">
-            Who Are You?
-          </h2>
-          <div className="flex justify-center space-x-4">
-            <button
-              onClick={() => setActiveTab("donors")}
-              className={`px-6 py-2 rounded-full cursor-pointer font-mono flex items-center space-x-2 ${
-                activeTab === "donors"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-700"
-              }`}
-            >
-              <Users /> <span>Donor</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("students")}
-              className={`px-6 py-2 rounded-full cursor-pointer font-mono flex items-center space-x-2 ${
-                activeTab === "students"
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700"
-              }`}
-            >
-              <CreditCard /> <span>Student</span>
-            </button>
-          </div>
-
-          {/* Dynamic Content Based on Tab */}
-          <div className="mt-8 bg-white p-8 rounded-lg shadow-lg">
-            <div className="flex items-center space-x-6">
-              {featuresData[activeTab].icon}
-              <div className="text-left">
-                <h3 className="text-2xl font-bold mb-2">
-                  {featuresData[activeTab].title}
-                </h3>
-                <p className="text-gray-600">
-                  {featuresData[activeTab].description}
-                </p>
-                <ul className="mt-4 space-y-2">
-                  {featuresData[activeTab].benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <svg
-                        className="w-5 h-5 text-blue-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* How It Works */}
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">How EduFund Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
               </div>
+              <h3 className="text-xl font-semibold mb-2">Create Profile</h3>
+              <p className="text-gray-600">
+                Students share their academic achievements, financial needs, and aspirations.
+              </p>
             </div>
-            <br />
-            <div className="flex justify-center space-x-4">
-              <Link
-                to={
-                  activeTab === "students"
-                    ? "/student-register"
-                    : "/donor-register"
-                }
-                className="border border-blue-600 text-blue-600 font-mono px-4 py-3 rounded-full hover:bg-blue-300 hover:text-black hover:border-black cursor-pointer transition"
-              >
-                Continue {"->"}
-              </Link>
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Fund Education</h3>
+              <p className="text-gray-600">
+                Donors contribute directly to students they want to support.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Track Impact</h3>
+              <p className="text-gray-600">
+                Follow students' progress and see the real impact of your contribution.
+              </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <Footer />
+      {/* Featured Students */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold">Featured Students</h2>
+            <Link to="/students" className="text-blue-600 hover:text-blue-800 font-medium">
+              See All Students →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredStudents.map((student) => (
+              <div key={student.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <img 
+                  src={student.image} 
+                  alt={student.name} 
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{student.name}</h3>
+                  <p className="text-gray-600 mb-2">{student.school}</p>
+                  <p className="text-gray-700 mb-4">{student.story}</p>
+                  <div className="mb-4">
+                    <div className="flex justify-between text-sm mb-1">
+                      <span>Progress</span>
+                      <span>{Math.round((student.raised / student.goal) * 100)}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div 
+                        className="bg-blue-600 h-2 rounded-full" 
+                        style={{ width: `${(student.raised / student.goal) * 100}%` }}
+                      ></div>
+                    </div>
+                    <div className="flex justify-between text-sm mt-1">
+                      <span>₹{student.raised.toLocaleString()}</span>
+                      <span>₹{student.goal.toLocaleString()}</span>
+                    </div>
+                  </div>
+                  <Link 
+                    to={`/student-profile/${student.id}`}
+                    className="block w-full bg-blue-600 text-white text-center py-2 rounded-md hover:bg-blue-700 transition duration-300"
+                  >
+                    Support Now
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Stats */}
+      <section className="bg-blue-600 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Impact</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold mb-2">500+</div>
+              <p className="text-blue-100">Students Supported</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-2">₹50M+</div>
+              <p className="text-blue-100">Funds Raised</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-2">95%</div>
+              <p className="text-blue-100">Graduation Rate</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-2">100%</div>
+              <p className="text-blue-100">Transparency</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Success Stories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="flex items-center mb-4">
+                <img src="/api/placeholder/64/64" alt="Student" className="w-16 h-16 rounded-full mr-4" />
+                <div>
+                  <h3 className="font-semibold">Rahul Mehra</h3>
+                  <p className="text-gray-600">Computer Science, IIT Bombay</p>
+                </div>
+              </div>
+              <p className="text-gray-700">
+                "Thanks to EduFund, I was able to attend one of India's top institutions. The platform not only provided financial support but also connected me with mentors who guided me throughout my academic journey."
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="flex items-center mb-4">
+                <img src="/api/placeholder/64/64" alt="Donor" className="w-16 h-16 rounded-full mr-4" />
+                <div>
+                  <h3 className="font-semibold">Sanjay Gupta</h3>
+                  <p className="text-gray-600">Donor</p>
+                </div>
+              </div>
+              <p className="text-gray-700">
+                "I've donated to several students through EduFund, and the transparency is remarkable. I can see exactly how my contributions are helping these students achieve their dreams. It's incredibly rewarding."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Make a Difference?</h2>
+          <p className="text-xl max-w-2xl mx-auto mb-8">
+            Join our community of donors and students working together to bridge the education gap.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/donor-register" className="bg-white text-blue-600 font-medium px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+              Become a Donor
+            </Link>
+            <Link to="/student-register" className="bg-blue-800 text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+              Apply for Scholarship
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default LandingPage;
+export default Home;

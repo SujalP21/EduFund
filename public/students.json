@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "name": "Anya Forger",
+      "image": "https://placekitten.com/300/200",
+      "school": "Eden Academy",
+      "goal": 50000,
+      "raised": 25000,
+      "location": "Berlin",
+      "program": "Scholarship",
+      "story": "Anya is a bright child with dreams of world peace. She needs support to complete her education."
+    },
+    {
+      "id": 2,
+      "name": "Iqra Khan",
+      "image": "https://placekitten.com/301/200",
+      "school": "Delhi Public School",
+      "goal": 40000,
+      "raised": 15000,
+      "location": "Delhi",
+      "program": "STEM Program",
+      "story": "Iqra is passionate about robotics and wants to represent India in international competitions."
+    },
+    {
+      "id": 3,
+      "name": "Raj Mehta",
+      "image": "https://placekitten.com/302/200",
+      "school": "Mumbai Central High",
+      "goal": 60000,
+      "raised": 52000,
+      "location": "Mumbai",
+      "program": "Arts & Culture",
+      "story": "Raj is a talented painter looking to fund his exhibition and apply to an art school abroad."
+    },
+    {
+      "id": 4,
+      "name": "Laxmi Kumari",
+      "image": "https://placekitten.com/303/200",
+      "school": "Jaipur Public School",
+      "goal": 30000,
+      "raised": 10000,
+      "location": "Jaipur",
+      "program": "Primary Education",
+      "story": "Laxmi wants to continue her basic education and needs help covering tuition and books."
+    },
+    {
+      "id": 5,
+      "name": "Arjun Verma",
+      "image": "https://placekitten.com/304/200",
+      "school": "Greenfield Academy",
+      "goal": 45000,
+      "raised": 32000,
+      "location": "Lucknow",
+      "program": "Sports Training",
+      "story": "Arjun is a young athlete training for the nationals in boxing and needs financial support."
+    }
+  ]
+  
